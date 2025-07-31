@@ -30,7 +30,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
 	public static boolean isXaeroMiniMapresent = false; // Extension for map and baritone
 	public static boolean isXaeroPlusMapresent = false; // other extension for map and baritone
 	public static boolean isLitematicaMapresent = false; // Detect litematica mod
-	public static boolean isWhereIsIt = false; // Utility for ChestTracker for render 3d text
 
 	@Override
 	public void onLoad(String mixinPackage) {
@@ -50,7 +49,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
 		isXaeroMiniMapresent = loader.isModLoaded("xaerominimap");
 		isXaeroPlusMapresent = loader.isModLoaded("xaeroplus");
 		isLitematicaMapresent = loader.isModLoaded("litematica");
-		isWhereIsIt = loader.isModLoaded("whereisit");
 	}
 
 	@Override
@@ -74,9 +72,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
 		}
 		else if (mixinClassName.startsWith(mixinPackageMeteorPlus + ".xaero.worldmap")) {
 			return isBaritonePresent && isXaeroWorldMapresent && isMeteorClient;
-		}
-		else if (mixinClassName.startsWith(mixinPackageMeteorPlus + ".whereisit")) {
-            return isWhereIsIt && isMeteorClient;
 		}
 		else if (mixinClassName.startsWith(mixinPackageMeteorPlus + ".minecraft")) {
 			return isMeteorClient;

@@ -26,8 +26,7 @@
   },
   "mixins": [
     "meteorplus.mixins.json",
-    "meteorplus-xaeroworldmap.mixins.json",
-    "meteorplus-whereisit.mixins.json"
+    "meteorplus-xaeroworldmap.mixins.json"
   ],
   "accessWidener": "meteorplus.accesswidener",
   "custom": {

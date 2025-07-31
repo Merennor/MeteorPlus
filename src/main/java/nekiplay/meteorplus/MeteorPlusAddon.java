@@ -9,7 +9,6 @@ import nekiplay.main.items.ModItems;
 import nekiplay.meteorplus.features.commands.*;
 import nekiplay.meteorplus.features.modules.combat.*;
 import nekiplay.meteorplus.features.modules.combat.velocity.VelocityPlus;
-import nekiplay.meteorplus.features.modules.integrations.WhereIsIt;
 import nekiplay.meteorplus.features.modules.misc.*;
 import nekiplay.meteorplus.features.modules.movement.*;
 import nekiplay.meteorplus.features.modules.movement.elytrafly.ElytraFlyPlus;
@@ -87,13 +86,6 @@ public class MeteorPlusAddon extends MeteorAddon {
 		}
 		else {
 			notFoundIntegrations.add("Journey Map");
-		}
-
-		if (!isWhereIsIt) {
-			notFoundIntegrations.add("Where is it");
-		}
-		else {
-			enabledIntegrations.add("Where is it");
 		}
 
 		if (!isBaritonePresent) {
@@ -191,9 +183,6 @@ public class MeteorPlusAddon extends MeteorAddon {
 				modules.add(new MapIntegration());
 			}
 		}
-		if (isWhereIsIt) {
-			modules.add(new WhereIsIt());
-		}
 		LOG.info(METEOR_LOGPREFIX + " Loaded modules");
 		//endregion
 
@@ -213,8 +202,7 @@ public class MeteorPlusAddon extends MeteorAddon {
 		LOG.info(METEOR_LOGPREFIX + " registering categories...");
 		if (isXaeroWorldMapresent ||
 			isJourneyMapPresent ||
-			MixinPlugin.isLitematicaMapresent ||
-			MixinPlugin.isWhereIsIt
+			MixinPlugin.isLitematicaMapresent
 		) {
 			Modules.registerCategory(CATEGORYMODS);
 		}

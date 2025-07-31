@@ -48,7 +48,6 @@
 ## Integrations
 | Module              | Description                                       |
 |---------------------|---------------------------------------------------|
-| **Chest Tracker**   | **Colors support, background disabler, y offset** |
 | **Xaero's MiniMap** | **Support baritone control on context**           |
 
 ## Commands

@@ -38,10 +38,6 @@ repositories {
 		name = "Xander Snapshot Maven"
 		url = uri("https://maven.isxander.dev/snapshots")
 	}
-	// Where Is It, JackFredLib
-	maven {
-		url = uri("https://maven.jackf.red/releases/")
-	}
 	mavenCentral()
 	gradlePluginPortal()
 }
@@ -65,9 +61,6 @@ dependencies {
 	// Xaero's Mods
 	modCompileOnly "maven.modrinth:xaeros-world-map:${project.xwm_fabric_version}" // Xaero's World Map
 	modCompileOnly "maven.modrinth:xaeros-minimap:${project.xmm_fabric_version}" // Xaero's Minimap
-
-	// Chest Tracker
-	modImplementation("red.jackf:whereisit:${project.where_is_it_version}")
 }
 
 loom {
