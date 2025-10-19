@@ -3,9 +3,12 @@ plugins {
 	id "maven-publish"
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
-archivesBaseName = project.archives_base_name
+base.archivesName = project.archives_name
 version = project.mod_version
 group = project.maven_group
 
@@ -38,6 +41,15 @@ repositories {
 		name = "Xander Snapshot Maven"
 		url = uri("https://maven.isxander.dev/snapshots")
 	}
+	// Meteor Client
+	    maven {
+        name = "meteor-maven"
+        url = "https://maven.meteordev.org/releases"
+    } 
+	    maven {
+        name = "meteor-maven-snapshots"
+        url = "https://maven.meteordev.org/snapshots"
+    }
 	mavenCentral()
 	gradlePluginPortal()
 }
@@ -55,8 +67,10 @@ dependencies {
 	include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.5.0")))
 
 	// Meteor Client
-	modImplementation files("libs\\baritone-unoptimized-fabric-1.14.0-1.jar")
-	modImplementation files("libs\\meteor-client-1.21.8-14.jar")
+	modImplementation files("libs\\baritone-unoptimized-fabric-1.14.0-1.jar") 
+	modImplementation("meteordevelopment:meteor-client:${project.minecraft_version}-SNAPSHOT")
+	implementation "org.meteordev:starscript:0.2.5"
+	implementation "meteordevelopment:orbit:0.2.4"
 
 	// Xaero's Mods
 	modCompileOnly "maven.modrinth:xaeros-world-map:${project.xwm_fabric_version}" // Xaero's World Map
@@ -65,6 +79,12 @@ dependencies {
 
 loom {
 	accessWidenerPath = file("src/main/resources/meteorplus.accesswidener")
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName}" }
+    }
 }
 
 processResources {
