@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "meteorplus",
-  "version": "${version}-noCT",
+  "version": "${version}",
   "name": "Meteor+",
   "description": "An addon for Meteor client that adds many blatant features.",
   "authors": [
