@@ -35,7 +35,7 @@ public class TickTimer {
 	}
 
 	private static int ticks() {
-		var handler = mc.getNetworkHandler();
+		var handler = mc.getConnection();
 		if (handler == null) return -1;
 
 		return ((ClientConnectionAccessor)handler.getConnection()).getTicks();

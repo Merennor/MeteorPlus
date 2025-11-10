@@ -2,14 +2,12 @@ package nekiplay.meteorplus.utils;
 
 import meteordevelopment.meteorclient.utils.player.PlayerUtils;
 import meteordevelopment.meteorclient.utils.world.Dimension;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -19,10 +17,10 @@ import static meteordevelopment.meteorclient.MeteorClient.mc;
 
 public class BlockHelper {
 
-	public static boolean isVecComplete(ArrayList<Vec3d> vlist) {
-		BlockPos ppos = mc.player.getBlockPos();
-		for (Vec3d b : vlist) {
-			BlockPos bb = ppos.add((int) b.getX(), (int) b.getY(), (int) b.getZ());
+	public static boolean isVecComplete(ArrayList<Vec3> vlist) {
+		BlockPos ppos = mc.player.blockPosition();
+		for (Vec3 b : vlist) {
+			BlockPos bb = ppos.offset((int) b.x(), (int) b.y(), (int) b.z());
 			if (getBlock(bb) == Blocks.AIR) return false;
 		}
 		return true;
@@ -46,14 +44,14 @@ public class BlockHelper {
 		double d = pos1.getX() - pos2.getX();
 		double e = pos1.getY() - pos2.getY();
 		double f = pos1.getZ() - pos2.getZ();
-		return MathHelper.sqrt((float) (d * d + e * e + f * f));
+		return Mth.sqrt((float) (d * d + e * e + f * f));
 	}
 
 
 	public static BlockPos getBlockPosFromDirection(Direction direction, BlockPos orginalPos) {
 		return switch (direction) {
-			case UP -> orginalPos.up();
-			case DOWN -> orginalPos.down();
+			case UP -> orginalPos.above();
+			case DOWN -> orginalPos.below();
 			case EAST -> orginalPos.east();
 			case WEST -> orginalPos.west();
 			case NORTH -> orginalPos.north();
@@ -64,22 +62,22 @@ public class BlockHelper {
 
 	public static Block getBlock(BlockPos p) {
 		if (p == null) return null;
-		if (mc.world == null) return null;
-		return mc.world.getBlockState(p).getBlock();
+		if (mc.level == null) return null;
+		return mc.level.getBlockState(p).getBlock();
 	}
 
 	public static boolean isOurSurroundBlock(BlockPos bp) {
-		BlockPos ppos = mc.player.getBlockPos();
+		BlockPos ppos = mc.player.blockPosition();
 		for (Direction direction : Direction.values()) {
 			if (direction == Direction.UP || direction == Direction.DOWN) continue;
-			BlockPos pos = ppos.offset(direction);
+			BlockPos pos = ppos.relative(direction);
 			if (pos.equals(bp)) return true;
 		}
 		return false;
 	}
 
 	public static boolean outOfRange(BlockPos cityBlock) {
-		return MathHelper.sqrt((float) mc.player.squaredDistanceTo(cityBlock.getX(), cityBlock.getY(), cityBlock.getZ())) > 4;
+		return Mth.sqrt((float) mc.player.distanceToSqr(cityBlock.getX(), cityBlock.getY(), cityBlock.getZ())) > 4;
 	}
 
 	public static BlockPos opposite(BlockPos pos, Dimension dimension)

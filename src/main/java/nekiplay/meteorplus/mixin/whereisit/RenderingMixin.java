@@ -3,7 +3,7 @@ package nekiplay.meteorplus.mixin.whereisit;
 import meteordevelopment.meteorclient.systems.modules.Modules;
 import nekiplay.meteorplus.features.modules.integrations.WhereIsIt;
 import nekiplay.meteorplus.utils.ColorRemover;
-import net.minecraft.text.Text;
+import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,13 +24,13 @@ public class RenderingMixin {
 		}
 
 		if (whereIsIt != null && whereIsIt.isActive()) {
-			Text text1 = args.get(0);
+			Component text1 = args.get(0);
 			String text2 = text1.getString();
 			if (whereIsIt.suport_color_symbols.get()) {
 				String text3 = ColorRemover.GetVerbatim(text2);
-				args.set(0, Text.of(text3));
+				args.set(0, Component.nullToEmpty(text3));
 
-				int width = mc.textRenderer.getWidth(text3);
+				int width = mc.font.width(text3);
 				float x = (float)(-width) / 2.0F;
 
 				args.set(1, x);

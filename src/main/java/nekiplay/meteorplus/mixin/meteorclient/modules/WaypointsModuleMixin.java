@@ -23,7 +23,6 @@ import nekiplay.meteorplus.utils.NumeralUtils;
 import nekiplay.meteorplus.mixinclasses.EditWaypointScreen;
 import nekiplay.meteorplus.mixinclasses.WIcon;
 import nekiplay.meteorplus.mixinclasses.WaypointsModuleModes;
-import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import meteordevelopment.meteorclient.gui.widgets.pressable.WCheckbox;
 import org.spongepowered.asm.mixin.Unique;

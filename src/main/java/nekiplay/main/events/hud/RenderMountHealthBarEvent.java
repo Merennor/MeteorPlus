@@ -1,12 +1,11 @@
 package nekiplay.main.events.hud;
 import nekiplay.main.events.Cancellable;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.client.gui.GuiGraphics;
 
 public class RenderMountHealthBarEvent extends Cancellable {
 	private static final RenderMountHealthBarEvent INSTANCE = new RenderMountHealthBarEvent();
-	private DrawContext context;
-	public static RenderMountHealthBarEvent get(DrawContext context) {
+	private GuiGraphics context;
+	public static RenderMountHealthBarEvent get(GuiGraphics context) {
 		INSTANCE.context = context;
 		return INSTANCE;
 	}

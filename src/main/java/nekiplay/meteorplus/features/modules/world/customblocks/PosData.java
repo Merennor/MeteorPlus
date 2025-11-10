@@ -1,8 +1,7 @@
 package nekiplay.meteorplus.features.modules.world.customblocks;
 
-import net.minecraft.util.math.BlockPos;
-
 import java.util.Objects;
+import net.minecraft.core.BlockPos;
 
 public class PosData {
 	public double x;
